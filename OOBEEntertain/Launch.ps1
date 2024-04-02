@@ -56,7 +56,7 @@ Process {
     # Since ServiceUI.exe is 64-bit, we want it to run the 64-bit PowerShell.exe, passing in the script path
     # Don't wait around for this to finish.
     $psExe = "$($env:WINDIR)\System32\WindowsPowerShell\v1.0\powershell.exe"
-    & .\ServiceUI.exe -session:$sessionID -nowait $psExe -ExecutionPolicy Bypass -NoProfile -File "$PSScriptRoot\$Script"
+    & .\ServiceUI.exe -session:$sessionID -nowait $psExe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File "$PSScriptRoot\$Script"
 
     # Create a tag file just so Intune knows this was installed
     Set-Content -Path "$($env:ProgramData)\OOBEEntertain\OOBEEntertain.ps1.tag" -Value "Installed"

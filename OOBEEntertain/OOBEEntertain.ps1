@@ -122,7 +122,7 @@ Process {
             $errorCode = [System.Runtime.InteropServices.Marshal]::GetLastWin32Error()
             $errorMessage = [System.ComponentModel.Win32Exception]::new($errorCode).Message
             Write-Host "WTSQueryUserToken failed: $errorMessage"
-            return
+            return $null
         }
         $si = New-Object System.Diagnostics.ProcessStartInfo
         $si.FileName = "$($env:WINDIR)\system32\cmd.exe"
@@ -165,7 +165,7 @@ Process {
             $errorMessage = [System.ComponentModel.Win32Exception]::new($errorCode).Message
         
             Write-Host "CreateProcessAsUser failed: $errorMessage"
-            return
+            return $null
         }
     
         Write-Host "Process ID: $($processInfo.dwProcessId)"
@@ -203,7 +203,7 @@ Process {
 
         # Sleep and try again
         Write-Host "Still in ESP"
-        Start-Sleep -Seconds 3
+        Start-Sleep -Seconds 5
     }
 
     # Stop the main Edge process
